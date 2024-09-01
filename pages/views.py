@@ -1,4 +1,6 @@
 from django.shortcuts import render
+from django.http import HttpResponse
+from . import views
 
 # Create your views here.
 
@@ -13,3 +15,6 @@ def services(request):
 
 def contact(request):
     return render(request, 'pages/contact.html')
+
+def cars(request):
+    return render(request, 'pages/cars/cars.html')

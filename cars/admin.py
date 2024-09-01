@@ -1,3 +1,6 @@
 from django.contrib import admin
+from .models import Car
 
-# Register your models here.
+# Inregistreaza modelele auto aici
+
+admin.site.register(Car)
