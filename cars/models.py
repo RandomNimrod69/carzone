@@ -1,8 +1,8 @@
 from django.db import models
-from datetime import datetime
+from django.utils import timezone
+from multiselectfield import MultiSelectField
 
 class Car(models.Model):
-
     county_choice = (
         ('DJ', 'Dolj'),
         ('MH', 'Mehedinti'),
@@ -34,24 +34,21 @@ class Car(models.Model):
         ('6', '6'),
     )
 
-    year_choice = []
-    for r in range(2000, (datetime.now().year + 1)):
-        year_choice.append((r, r))
+    year_choice = [(r, r) for r in range(2000, (timezone.now().year + 1))]
 
     car_title = models.CharField(max_length=255)
     judet = models.CharField(choices=county_choice, max_length=100)
     culoare = models.CharField(max_length=100)
     model = models.CharField(max_length=100)
-    an = models.IntegerField()
+    an = models.IntegerField(choices=year_choice)
     conditie = models.CharField(max_length=100)
     pret = models.IntegerField()
-    descriere = models.TextField()
     poza = models.ImageField(upload_to='photos/%Y/%m/%d/')
     poza_1 = models.ImageField(upload_to='photos/%Y/%m/%d/', blank=True)
     poza_2 = models.ImageField(upload_to='photos/%Y/%m/%d/', blank=True)
     poza_3 = models.ImageField(upload_to='photos/%Y/%m/%d/', blank=True)
     poza_4 = models.ImageField(upload_to='photos/%Y/%m/%d/', blank=True)
-    optiuni = models.CharField(choices=features_choices, max_length=100)
+    optiuni = MultiSelectField(choices=features_choices, max_length=500)
     caroserie = models.CharField(max_length=100)
     motor = models.CharField(max_length=100)
     cutie = models.CharField(max_length=100)
@@ -61,6 +58,9 @@ class Car(models.Model):
     serie_Sasiu = models.CharField(max_length=100)
     consum = models.IntegerField()
     tip_combustibil = models.CharField(max_length=100)
-    numar_propietari = models.CharField()
+    numar_propietari = models.CharField(max_length=100)
     is_featured = models.BooleanField(default=False)
-    data_adaugare = models.DateTimeField(default=datetime.now, blank=True)
+    data_adaugare = models.DateTimeField(default=timezone.now, blank=True)
+
+    def __str__(self):
+        return self.car_title

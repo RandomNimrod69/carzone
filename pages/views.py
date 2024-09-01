@@ -1,11 +1,14 @@
 from django.shortcuts import render
-from django.http import HttpResponse
-from . import views
+from cars.models import Car  # Correct import of the Car model
 
 # Create your views here.
 
 def home(request):
-    return render (request,'pages/home.html')
+    featured_cars = Car.objects.order_by('-data_adaugare').filter(is_featured=True)
+    data = {
+        'featured_cars': featured_cars
+    }
+    return render(request, 'pages/home.html', data)
 
 def about(request):
     return render(request, 'pages/about.html')
