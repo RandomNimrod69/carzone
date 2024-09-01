@@ -36,6 +36,7 @@ class Car(models.Model):
 
     year_choice = [(r, r) for r in range(2000, (timezone.now().year + 1))]
 
+    id = models.IntegerField(primary_key= True)
     car_title = models.CharField(max_length=255)
     judet = models.CharField(choices=county_choice, max_length=100)
     culoare = models.CharField(max_length=100)
