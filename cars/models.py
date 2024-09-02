@@ -4,10 +4,10 @@ from multiselectfield import MultiSelectField
 
 class Car(models.Model):
     county_choice = (
-        ('DJ', 'Dolj'),
-        ('MH', 'Mehedinti'),
-        ('OT', 'Olt'),
-        ('B', 'Bucuresti'),
+        ('Craiova', 'Dolj'),
+        ('Strehaia', 'Mehedinti'),
+        ('Slatina', 'Olt'),
+        ('Bucuresti', 'Bucuresti'),
     )
 
     features_choices = (
@@ -35,7 +35,6 @@ class Car(models.Model):
     )
 
     year_choice = [(r, r) for r in range(2000, (timezone.now().year + 1))]
-
     id = models.IntegerField(primary_key= True)
     car_title = models.CharField(max_length=255)
     judet = models.CharField(choices=county_choice, max_length=100)

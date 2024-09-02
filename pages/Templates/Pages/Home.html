@@ -133,10 +133,10 @@
                 <div class="slick-slide-item">
                     <div class="car-box-3">
                         <div class="car-thumbnail">
-                            <a href="car-details.html" class="car-img">
+                            <a href="{% url 'car_detail' car.id %}" class="car-img">
                                 <div class="tag-2">Featured</div>
                                 <div class="price-box">
-                                    <span>{{ car.pret|intcomma }}</span>
+                                    <span>{{ car.pret|intcomma }}$ </span>
                                     <br>
                                 </div>
                                 <img class="d-block w-100" src="{{ car.car_photo.url }}" alt="car" style="min-height: 262px; max-height: 262px">
@@ -221,13 +221,13 @@
             <div class="col-lg-4 col-md-6">
                 <div class="car-box">
                     <div class="car-thumbnail">
-                        <a href="car-details.html" class="car-img">
+                        <a href="{% url 'car_detail' car.id %}" class="car-img">
                             <div class="tag">For Sale</div>
                             <img class="d-block w-100" src="{{car.car_photo.url}}" alt="car" style="min-height: 262px, max-height: 262px">
                             <div class="facilities-list clearfix">
                                 <ul>
                                     <li>
-                                        <span><i class="flaticon-way"></i></span>{{car.kilometraj | intcomma}}
+                                        <span><i class="flaticon-way"></i></span>{{car.kilometraj | intcomma}}km
                                     </li>
                                     <li>
                                         <span><i class="flaticon-calendar-1"></i></span>{{car.year}}
@@ -267,7 +267,7 @@
                             <a href="car-details.html">{{car.car_title}}</a>
                         </h1>
                         <div class="location">
-                            <a href="car-details.html">
+                            <a href="{%url 'car_detail' car.id%}">
                                 <i class="flaticon-pin"></i>{{car.judet}}
                             </a>
                         </div>
@@ -277,7 +277,7 @@
                             <p class="cartype">Sedan</p>
                         </div>
                         <div class="pull-right">
-                            <p class="price">{{car.pret | intcomma}}</p>
+                            <p class="price">{{car.pret | intcomma}}$</p>
                         </div>
                     </div>
                 </div>
