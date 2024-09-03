@@ -120,7 +120,7 @@ $(function () {
                 }
             }
         } else {
-            $('.company-logo img').attr('src', '..static/img/logos/black-logo.png');
+            $('.company-logo img').attr('src', '../static/img/logos/black-logo.png');
         }
     }
 
@@ -366,7 +366,6 @@ $(function () {
     });
 
 
-    // Full  Page Search Activation
     $(function () {
         $('a[href="#full-page-search"]').on('click', function(event) {
             event.preventDefault();
@@ -382,7 +381,6 @@ $(function () {
     });
 
 
-    // Slick Sliders
     $('.slick-carousel').each(function () {
         var slider = $(this);
         $(this).slick({
@@ -479,3 +477,10 @@ $(function () {
         }
     }).trigger("resize");
 })(jQuery);
+
+setTimeout(function(){
+
+$('#message').fadeOut('slow');
+
+
+}, 4000)

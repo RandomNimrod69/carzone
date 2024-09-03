@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from cars.models import Car  # Correct import of the Car model
 
 # Create your views here.
@@ -40,3 +40,16 @@ def contact(request):
 
 def cars(request):
     return render(request, 'pages/cars/cars.html')
+
+def login(request):
+    return render (request, 'accounts/login.html')
+
+def register(request):
+    return render (request, 'accounts/register.html')
+
+def dashboard(request):
+    return render (request, 'accounts/dashboard.html')
+
+def logout(request):
+    return redirect('home')
+
