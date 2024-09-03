@@ -199,24 +199,15 @@
         <div class="row">
             {% for car in all_cars %}
             <div class="col-lg-4 col-md-6">
-                <div class="car-box">
+                <div class="car-box-3">
                     <div class="car-thumbnail">
                         <a href="{% url 'car_detail' car.id %}" class="car-img">
                             <div class="tag">For Sale</div>
-                            <img class="d-block w-100" src="{{ car.car_poza.url }}" alt="car" style="min-height: 262px; max-height: 262px;">
-                            <div class="facilities-list clearfix">
-                                <ul>
-                                    <li>
-                                        <span><i class="flaticon-way"></i></span>{{ car.kilometraj|intcomma }}km
-                                    </li>
-                                    <li>
-                                        <span><i class="flaticon-calendar-1"></i></span>{{ car.year }}
-                                    </li>
-                                    <li>
-                                        <span><i class="flaticon-manual-transmission"></i></span>{{ car.cutie }}
-                                    </li>
-                                </ul>
+                            <div class="price-box">
+                                <span>{{ car.pret|intcomma }}$ </span>
+                                <br>
                             </div>
+                            <img class="d-block w-100" src="{{ car.car_poza.url }}" alt="car" style="min-height: 262px; max-height: 262px">
                         </a>
                         <div class="carbox-overlap-wrapper">
                             <div class="overlap-box">
@@ -256,18 +247,18 @@
                             <a href="{% url 'car_detail' car.id %}">{{ car.car_title }}</a>
                         </h1>
                         <div class="location">
-                            <a href="{% url 'car_detail' car.id %}">
+                            <a href="car-details.html">
                                 <i class="flaticon-pin"></i>{{ car.judet }}
                             </a>
                         </div>
-                    </div>
-                    <div class="footer clearfix">
-                        <div class="pull-left ratings days">
-                            <p class="cartype">Sedan</p>
-                        </div>
-                        <div class="pull-right">
-                            <p class="price">{{ car.pret|intcomma }}$</p>
-                        </div>
+                        <ul class="facilities-list clearfix">
+                            <li>{{ car.tip_combustibil }}</li>
+                            <li>{{ car.kilometraj|intcomma }}</li>
+                            <li>{{ car.cutie }}</li>
+                            <li>{{ car.caroserie }}</li>
+                            <li>{{ car.culoare }}</li>
+                            <li>{{ car.an }}</li>
+                        </ul>
                     </div>
                 </div>
             </div>

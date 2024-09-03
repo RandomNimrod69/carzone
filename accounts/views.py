@@ -1,16 +1,43 @@
 from django.shortcuts import render, redirect
-from django.contrib import messages
+from django.contrib import messages, auth
+from django.contrib.auth.models import User
 
 def login(request):
     return render(request, 'accounts/login.html')
 
 def register(request):
     if request.method == 'POST':
-        messages.error(request, 'Error Detected')
-        return redirect('register')
+        firstname = request.POST['firstname']
+        lastname = request.POST['lastname']
+        username = request.POST['username']
+        email = request.POST['email']
+        password = request.POST['password']
+        confirm_password = request.POST['confirm_password']
+
+        if password == confirm_password:
+            if User.objects.filter(username=username).exists():
+             messages.error(request, 'Username already in use!')
+             return redirect('register')
+            else:
+                if User.objects.filter(email=email).exists():
+                    messages.error(request, 'Email already in use!')
+                    return redirect('register')
+                else:
+                    user = user.objects.create_user(firs_tname=firstname, las_tname=lastname, email=email, username=username, password=password)
+                    auth.login(request, user)
+                    messages.success(request, "Welcome")
+                    return redirect('dashboard')
+                    user.save()
+                    messages.success(request,'Registration successfull')
+
+                    return redirect('login')
+
+
+        else:
+            messages.error(request, 'Passwords do not match')
+            return render(request, 'accounts/register.html')
     else:
         return render(request, 'accounts/register.html')
-
 
 def dashboard(request):
     return render(request, 'accounts/dashboard.html')
