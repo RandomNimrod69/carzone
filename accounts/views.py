@@ -3,6 +3,21 @@ from django.contrib import messages, auth
 from django.contrib.auth.models import User
 
 def login(request):
+    if request.method == 'POST':
+        username = request.POST['username']
+        passowrd = request.POST['password']
+
+    user = auth.authenticate(username=username, password=passowrd)
+
+    if user is not None:
+        auth.login(request, user)
+        messages.success (request, 'You are now logged in.')
+        return redirect('dashboard')
+        print('Login attempt with username:', username)
+
+    else:
+        messages.error(request, 'Invalid login credentials')
+        return redirect('login')
     return render(request, 'accounts/login.html')
 
 def register(request):
@@ -43,4 +58,8 @@ def dashboard(request):
     return render(request, 'accounts/dashboard.html')
 
 def logout(request):
+    if request.method == 'POST':
+        auth.logout(request)
+        messages.success (request, 'You are succesfully logged out')
+        return redirect('home')
     return redirect('home')

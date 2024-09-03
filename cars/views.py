@@ -5,7 +5,7 @@ from django.db.models import Q
 
 def cars(request):
     cars = Car.objects.order_by('-data_adaugare')
-    paginator = Paginator(cars, 3)
+    paginator = Paginator(cars, 6)
     page = request.GET.get('page')
 
 
@@ -57,7 +57,7 @@ def search(request):
         keyword = request.GET['keyword']
         if keyword:
             # Filter cars where the 'description' field contains the keyword
-            cars = cars.filter(description__icontains=keyword)
+            cars = cars.filter(car_title__icontains=keyword)
 
     if 'model' in request.GET:
         model = request.GET['model']
